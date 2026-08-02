@@ -1,5 +1,4 @@
- import mongoose, { Schema } from 'mongoose';
-import { createDeflate } from 'node:zlib';
+import mongoose, { Schema } from 'mongoose';
 
  export interface IUser {
     email: string;

@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import healthRouter from './routes/health.js';
+import authRouter from './routes/auth.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(morgan('dev'));
 
 // --- Routes ---
 app.use('/api/health', healthRouter);
+app.use('/api/auth', authRouter);
 
 // --- Error Handling (must be LAST middleware) ---
 app.use(errorHandler);
