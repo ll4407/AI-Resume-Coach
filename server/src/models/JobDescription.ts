@@ -21,13 +21,14 @@ const jobDescriptionSchema = new Schema<IJobDescription> (
         },
         company: {
             type: String,
+            required: true,
             trim: true,
             default: '',
         },
         role: {
             type: String,
             required: [true, 'Job role is required'],
-            trime: true,
+            trim: true,
         },
         description: {
             type: String,

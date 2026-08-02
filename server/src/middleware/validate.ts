@@ -61,3 +61,134 @@ export const refreshvalidation: ValidationChain[] = [
         .notEmpty()
         .withMessage('Refresh token is required',)
 ];
+
+// Validation rules for creating a resume
+export const createResumeValidation: ValidationChain[] = [
+    body('title')
+        .trim()
+        .isLength({ min: 1, max: 200 })
+        .withMessage('Title is required and cannot excceed 200 characters'),
+    body('targetRole')
+        .optional()
+        .trim()
+        .isLength({ max: 200 })
+        .withMessage('Target role cannot exceed 200 characters'),
+    body('sections')
+        .optional()
+        .isArray()
+        .withMessage('Sections must be an array'),
+    body('sections.*.title')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Section title is reequired'),
+    body('sections.*.content')
+        .optional()
+        .notEmpty()
+        .withMessage('Section content is requried'),
+    body('sections.*.order')
+        .optional()
+        .isInt({ min: 0})
+        .withMessage('Section order must be a non-negative integer'),
+    body('rawContent')
+        .optional()
+        .isString()
+        .withMessage('Raw content must be a string'),
+];
+
+
+//  Validation rules for updating a resume
+export const updateResumeValidation: ValidationChain[] = [
+        body('title')
+        .trim()
+        .isLength({ min: 1, max: 200 })
+        .withMessage('Title is required and cannot excceed 200 characters'),
+    body('targetRole')
+        .optional()
+        .trim()
+        .isLength({ max: 200 })
+        .withMessage('Target role cannot exceed 200 characters'),
+    body('sections')
+        .optional()
+        .isArray()
+        .withMessage('Sections must be an array'),
+    body('sections.*.title')
+        .optional()
+        .trim()
+        .notEmpty()
+        .withMessage('Section title is reequired'),
+    body('sections.*.content')
+        .optional()
+        .notEmpty()
+        .withMessage('Section content is requried'),
+    body('sections.*.order')
+        .optional()
+        .isInt({ min: 0})
+        .withMessage('Section order must be a non-negative integer'),
+    body('rawContent')
+        .optional()
+        .isString()
+        .withMessage('Raw content must be a string'),
+];
+
+// Validation rules for creating a job description
+export const createJobValidation: ValidationChain[] = [
+  body('role')
+    .trim()
+    .isLength({ min: 1, max: 200 })
+    .withMessage('Job role is required and cannot exceed 200 characters'),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Job description text is required'),
+  body('company')
+    .optional()
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage('Company name cannot exceed 200 characters'),
+  body('url')
+    .optional()
+    .trim()
+    .isURL()
+    .withMessage('URL must be a valid URL'),
+  body('keywordsExtracted')
+    .optional()
+    .isArray()
+    .withMessage('Keywords must be an array'),
+  body('keywordsExtracted.*')
+    .optional()
+    .isString()
+    .withMessage('Each keyword must be a string'),
+];
+
+// Validation rules for updating a job description
+export const updateJobValidation: ValidationChain[] = [
+  body('role')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 200 })
+    .withMessage('Job role cannot exceed 200 characters'),
+  body('description')
+    .optional()
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage('Job description cannot be empty'),
+  body('company')
+    .optional()
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage('Company name cannot exceed 200 characters'),
+  body('url')
+    .optional()
+    .trim()
+    .isURL()
+    .withMessage('URL must be a valid URL'),
+  body('keywordsExtracted')
+    .optional()
+    .isArray()
+    .withMessage('Keywords must be an array'),
+  body('keywordsExtracted.*')
+    .optional()
+    .isString()
+    .withMessage('Each keyword must be a string'),
+];
